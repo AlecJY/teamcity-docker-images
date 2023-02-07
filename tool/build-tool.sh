@@ -2,7 +2,7 @@
 
 case $(uname | tr '[:upper:]' '[:lower:]') in
   linux*)
-    export RID=linux-x64
+    export RID=linux-arm64
     export TOOL=TeamCity.Docker
     ;;
   darwin*)

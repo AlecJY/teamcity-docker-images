@@ -5,6 +5,8 @@
 # ARG dotnetLinuxARM64ComponentSHA512_31
 # ARG dotnetLinuxARM64Component_50
 # ARG dotnetLinuxARM64ComponentSHA512_50
+# ARG dotnetLinuxARM64Component_60
+# ARG dotnetLinuxARM64ComponentSHA512_60
 # ARG teamcityMinimalAgentImage
 # ARG dotnetLibs
 # ARG gitLinuxComponentVersion
@@ -52,6 +54,8 @@ ARG dotnetLinuxARM64Component_31
 ARG dotnetLinuxARM64ComponentSHA512_31
 ARG dotnetLinuxARM64Component_50
 ARG dotnetLinuxARM64ComponentSHA512_50
+ARG dotnetLinuxARM64Component_60
+ARG dotnetLinuxARM64ComponentSHA512_60
 ARG dotnetLibs
 ARG gitLinuxComponentVersion
 ARG gitLFSLinuxComponentVersion
@@ -96,6 +100,12 @@ RUN apt-get update && \
 # Install [${dotnetLinuxARM64ComponentName_50}](${dotnetLinuxARM64Component_50})
     curl -SL ${dotnetLinuxARM64Component_50} --output /tmp/dotnet.tar.gz && \
     echo "${dotnetLinuxARM64ComponentSHA512_50} */tmp/dotnet.tar.gz" | sha512sum -c -; \
+    tar -zxf /tmp/dotnet.tar.gz -C /usr/share/dotnet && \
+    rm /tmp/dotnet.tar.gz && \
+    find /usr/share/dotnet -name "*.lzma" -type f -delete && \
+# Install [${dotnetLinuxARM64ComponentName_60}](${dotnetLinuxARM64Component_60})
+    curl -SL ${dotnetLinuxARM64Component_60} --output /tmp/dotnet.tar.gz && \
+    echo "${dotnetLinuxARM64ComponentSHA512_60} */tmp/dotnet.tar.gz" | sha512sum -c -; \
     tar -zxf /tmp/dotnet.tar.gz -C /usr/share/dotnet && \
     rm /tmp/dotnet.tar.gz && \
     find /usr/share/dotnet -name "*.lzma" -type f -delete && \
